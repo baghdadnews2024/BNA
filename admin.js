@@ -30,7 +30,7 @@ console.log("Admin JS Connected ✅");
 
 /* ================= Firebase Config ================= */
 const firebaseConfig = {
-  apiKey: "YOUR_FIREBASE_API_KEY",
+  apiKey: "AIzaSyAnNZL7aqmrru2kXFUx5DysxG4lt3ACYUM",
   authDomain: "baghdad-news-agency-4b2e8.firebaseapp.com",
   projectId: "baghdad-news-agency-4b2e8",
   storageBucket: "baghdad-news-agency-4b2e8.appspot.com",
@@ -252,3 +252,4 @@ onSnapshot(q, snapshot => {
   });
 
 });
+
