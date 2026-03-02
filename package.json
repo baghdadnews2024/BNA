@@ -1,0 +1,7 @@
+{
+  "name": "bna",
+  "private": true,
+  "dependencies": {
+    "imagekit": "^5.0.0"
+  }
+}
