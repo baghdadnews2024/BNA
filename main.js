@@ -59,12 +59,15 @@ function filterNews() {
 
       const mediaHTML = news.videoURL
         ? `<video src="${news.videoURL}" controls style="width:100%;height:150px;object-fit:cover;"></video>`
-        : `<img src="${news.imageURL || 'https://picsum.photos/300/200'}" alt="">`;
+        : `<img src="${news.imageURL || 'https://picsum.photos/300/200'}" alt="" style="width:100%;height:150px;object-fit:cover;">`;
+
+      const excerpt =
+        news.content.length > 160 ? news.content.slice(0, 160) + "..." : news.content;
 
       card.innerHTML = `
         ${mediaHTML}
         <h3>${news.title}</h3>
-        <p>${news.content}</p>
+        <p>${excerpt}</p>
       `;
 
       newsGrid.appendChild(card);
