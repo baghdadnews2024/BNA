@@ -9,127 +9,58 @@
 <body>
   <div class="container">
 
-  <!-- Top Bar -->
-  <div class="admin-header">
-    <h1>Baghdad News Agency - لوحة الإدارة</h1>
-    <button id="logoutBtn" class="logout-btn top-logout">تسجيل الخروج</button>
-  </div>
+    <!-- Top Bar -->
+    <div class="admin-header">
+      <h1>Baghdad News Agency - لوحة الإدارة</h1>
+      <button id="logoutBtn" class="logout-btn top-logout">تسجيل الخروج</button>
+    </div>
 
-  <!-- تسجيل الدخول -->
-  <div id="loginDiv" class="card">
-    <h2>تسجيل الدخول</h2>
-    <input type="email" id="email" placeholder="البريد الإلكتروني">
-    <input type="password" id="password" placeholder="كلمة السر">
-    <button id="loginBtn">تسجيل الدخول</button>
-    <p id="loginError" class="error"></p>
-  </div>
+    <!-- تسجيل الدخول -->
+    <div id="loginDiv" class="card">
+      <h2>تسجيل الدخول</h2>
+      <input type="email" id="email" placeholder="البريد الإلكتروني">
+      <input type="password" id="password" placeholder="كلمة السر">
+      <button id="loginBtn">تسجيل الدخول</button>
+      <p id="loginError" class="error"></p>
+    </div>
 
-  <!-- Dashboard -->
-  <div id="dashboard" style="display:none;">
-    
-    <div class="dashboard-grid">
+    <!-- Dashboard -->
+    <div id="dashboard" style="display:none;">
+      <div class="dashboard-grid">
 
-      <!-- Left: Form -->
-      <div class="card form-card">
-        <h2 id="formTitle">إضافة خبر</h2>
-        <form id="newsForm">
-          <input type="text" id="newsTitle" placeholder="عنوان الخبر" required>
-          <textarea id="newsContent" placeholder="نص الخبر" required></textarea>
+        <!-- Left: Form -->
+        <div class="card form-card">
+          <h2 id="formTitle">إضافة خبر</h2>
+          <form id="newsForm">
+            <input type="text" id="newsTitle" placeholder="عنوان الخبر" required>
+            <textarea id="newsContent" placeholder="نص الخبر" required></textarea>
 
-          <select id="newsCategory" required>
-            <option value="المحلية">المحلية</option>
-            <option value="العربية">العربية</option>
-            <option value="الدولية">الدولية</option>
-            <option value="مال وأعمال">مال وأعمال</option>
-            <option value="رياضة">رياضة</option>
-          </select>
+            <select id="newsCategory" required>
+              <option value="المحلية">المحلية</option>
+              <option value="العربية">العربية</option>
+              <option value="الدولية">الدولية</option>
+              <option value="مال وأعمال">مال وأعمال</option>
+              <option value="رياضة">رياضة</option>
+            </select>
 
-          <input type="file" id="newsImage" accept="image/*">
-          <input type="file" id="newsVideo" accept="video/*">
+            <!-- صور فقط حالياً -->
+            <input type="file" id="newsImage" accept="image/*">
 
-          <img id="imagePreview">
-          <video id="videoPreview" controls></video>
+            <img id="imagePreview" style="display:none;" />
 
-          <button type="submit" id="submitBtn">نشر الخبر</button>
-        </form>
+            <button type="submit" id="submitBtn">نشر الخبر</button>
+          </form>
+        </div>
+
+        <!-- Right: Posts -->
+        <div class="card posts-card">
+          <h2>المنشورات</h2>
+          <div id="postsList"></div>
+        </div>
+
       </div>
-
-      <!-- Right: Posts -->
-      <div class="card posts-card">
-        <h2>المنشورات</h2>
-        <div id="postsList"></div>
-      </div>
-
-    </div>
-  </div>
-</div>
-
-    <!-- لوحة الأخبار -->
-    <div id="newsDiv" class="card" style="display:none;">
-      <h2 id="formTitle">أضف خبر جديد</h2>
-
-      <form id="newsForm">
-        <input type="text" id="newsTitle" placeholder="عنوان الخبر" required />
-        <textarea id="newsContent" placeholder="نص الخبر" required></textarea>
-
-        <label for="newsCategory">اختر القسم:</label>
-        <select id="newsCategory" required>
-          <option value="المحلية">المحلية</option>
-          <option value="العربية">العربية</option>
-          <option value="الدولية">الدولية</option>
-          <option value="مال وأعمال">مال وأعمال</option>
-          <option value="آراء">آراء</option>
-          <option value="تقارير">تقارير</option>
-          <option value="ترفيه">ترفيه</option>
-          <option value="ثقافة">ثقافة</option>
-          <option value="رياضة">رياضة</option>
-          <option value="منوعة">منوعة</option>
-        </select>
-
-        <label for="newsImage">اختر صورة:</label>
-        <input type="file" id="newsImage" accept="image/*" />
-        <div class="inline-actions">
-          <button type="button" id="clearImageBtn" class="secondary">حذف/تغيير الصورة</button>
-        </div>
-
-        <label for="newsVideo">اختر فيديو (اختياري):</label>
-        <input type="file" id="newsVideo" accept="video/*" />
-        <div class="inline-actions">
-          <button type="button" id="clearVideoBtn" class="secondary">حذف/تغيير الفيديو</button>
-        </div>
-
-        <!-- معاينة الملف -->
-        <img id="imagePreview" style="display:none;" alt="معاينة الصورة" />
-        <video id="videoPreview" style="display:none;" controls></video>
-
-        <!-- Preview كامل للخبر -->
-        <div class="preview-card">
-          <h3>Preview قبل النشر</h3>
-          <div class="preview-body">
-            <div class="preview-meta">
-              <span id="previewCategory">—</span>
-            </div>
-            <h2 id="previewTitle">عنوان الخبر</h2>
-            <p id="previewContent">نص الخبر يظهر هنا…</p>
-            <img id="previewImage" style="display:none;" alt="Preview Image"/>
-            <video id="previewVideo" style="display:none;" controls></video>
-          </div>
-        </div>
-
-        <div class="form-actions">
-          <button type="submit" id="submitBtn">نشر الخبر</button>
-          <button type="button" id="cancelEditBtn" class="secondary" style="display:none;">إلغاء التعديل</button>
-        </div>
-      </form>
-
-      <button id="logoutBtn" class="logout-btn">تسجيل الخروج</button>
     </div>
 
-    <!-- إدارة المنشورات -->
-    <div id="postsDiv" class="card" style="display:none;">
-      <h2>المنشورات (تعديل / حذف)</h2>
-      <div id="postsList" class="posts-list"></div>
-    </div>
   </div>
 
   <script type="module" src="admin.js"></script>
