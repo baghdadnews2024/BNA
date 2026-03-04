@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تفاصيل الخبر - Baghdad News Agency</title>
+
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+
+.article-container{
+max-width:900px;
+margin:40px auto;
+background:white;
+padding:30px;
+border-radius:6px;
+box-shadow:0 2px 8px rgba(0,0,0,0.08);
+}
+
+.article-title{
+font-size:32px;
+margin-bottom:15px;
+color:#111;
+}
+
+.article-meta{
+color:#777;
+margin-bottom:20px;
+font-size:14px;
+}
+
+.article-media img,
+.article-media video{
+width:100%;
+max-height:450px;
+object-fit:cover;
+border-radius:5px;
+margin-bottom:20px;
+}
+
+.article-content{
+font-size:18px;
+line-height:1.9;
+color:#333;
+}
+
+.back-home{
+display:inline-block;
+margin-top:25px;
+color:#741c7f;
+font-weight:bold;
+text-decoration:none;
+}
+
+</style>
+
+</head>
+<body>
+
+<header class="header">
+<nav class="navbar">
+
+<button class="hamburger" id="hamburger">
+<i class="fas fa-bars"></i>
+</button>
+
+<a href="index.html" class="logo">
+<img src="images/logo.png.png" alt="Baghdad News Agency Logo">
+</a>
+
+<ul class="nav-links" id="navLinks">
+<li><a href="index.html">الرئيسية</a></li>
+<li><a href="category.html?cat=المحلية">المحلية</a></li>
+<li><a href="category.html?cat=العربية">العربية</a></li>
+<li><a href="category.html?cat=الدولية">الدولية</a></li>
+<li><a href="category.html?cat=مال%20وأعمال">مال وأعمال</a></li>
+<li><a href="category.html?cat=رياضة">رياضة</a></li>
+</ul>
+
+</nav>
+</header>
+
+<main>
+
+<div class="article-container">
+
+<h1 class="article-title" id="articleTitle"></h1>
+
+<div class="article-meta" id="articleCategory"></div>
+
+<div class="article-media" id="articleMedia"></div>
+
+<div class="article-content" id="articleContent"></div>
+
+<a href="index.html" class="back-home">العودة للرئيسية</a>
+
+</div>
+
+</main>
+
+<script type="module" src="post.js"></script>
+
+</body>
+</html>

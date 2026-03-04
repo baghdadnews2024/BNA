@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>الأقسام - Baghdad News Agency</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- نفس الهيدر مالچ إذا تحبين تنسخينه من index.html -->
+  <header class="header">
+    <nav>
+      <a class="logo" href="index.html">
+        <img src="images/logo.png.png" alt="Baghdad News Agency Logo">
+      </a>
+
+      <button class="hamburger" id="hamburger">☰</button>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">الرئيسية</a></li>
+        <li><a href="category.html?cat=المحلية">المحلية</a></li>
+        <li><a href="category.html?cat=العربية">العربية</a></li>
+        <li><a href="category.html?cat=الدولية">الدولية</a></li>
+        <li><a href="category.html?cat=مال%20وأعمال">مال وأعمال</a></li>
+        <li><a href="category.html?cat=آراء">آراء</a></li>
+        <li><a href="category.html?cat=تقارير">تقارير</a></li>
+        <li><a href="category.html?cat=ترفيه">ترفيه</a></li>
+        <li><a href="category.html?cat=ثقافة">ثقافة</a></li>
+        <li><a href="category.html?cat=رياضة">رياضة</a></li>
+        <li><a href="category.html?cat=منوعة">منوعة</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main style="padding: 20px 40px;">
+    <h2 id="categoryTitle" style="margin-bottom:15px;"></h2>
+
+    <!-- نفس id اللي مستخدمته بالـ JS -->
+    <div class="news-grid" id="newsGrid"></div>
+  </main>
+
+  <script type="module" src="category.js"></script>
+</body>
+</html>
