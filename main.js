@@ -1,7 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
 import { getFirestore, collection, query, orderBy, onSnapshot } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-firestore.js";
 
-console.log("JS Connected! ✅");
+console.log("Main JS Connected ✅");
 
 const firebaseConfig = {
   apiKey: "AIzaSyAnNZL7aqmrru2kXFUx5DysxG4lt3ACYUM",
@@ -16,66 +16,140 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
+const heroMain = document.getElementById("heroMain");
+const heroSide = document.getElementById("heroSide");
 const newsGrid = document.getElementById("newsGrid");
-if (!newsGrid) throw new Error("newsGrid element not found!");
 
-const categoryLinks = document.querySelectorAll(".category-link");
-let selectedCategory = "كل الأقسام";
+// شريط عاجل
+const breakingBar = document.getElementById("breakingBar");
+const breakingTextEl = document.getElementById("breakingText");
 
-categoryLinks.forEach(link => {
-  link.addEventListener("click", (e) => {
-    e.preventDefault();
-    selectedCategory = link.dataset.category || "كل الأقسام";
-    filterNews();
-  });
-});
-
-let allNews = [];
 const q = query(collection(db, "news"), orderBy("timestamp", "desc"));
 
-onSnapshot(q, snapshot => {
-  allNews = [];
-  snapshot.forEach(d => {
+onSnapshot(q, (snapshot) => {
+  const all = [];
+  snapshot.forEach((d) => {
     const n = d.data();
-    allNews.push({
+    all.push({
       id: d.id,
       title: n.title || "عنوان غير متوفر",
-      content: n.content || "محتوى غير متوفر",
+      content: n.content || "",
       imageURL: n.imageURL || null,
       videoURL: n.videoURL || null,
-      category: n.category || "آخر الاخبار"
+      category: n.category || "",
+      placement: n.placement || "normal", // featured / side / normal
+      isBreaking: !!n.isBreaking,
+      breakingText: n.breakingText || ""
     });
   });
-  filterNews();
+
+  renderBreaking(all);
+  renderHero(all);
+  renderGrid(all);
 });
 
-function filterNews() {
+function renderBreaking(all) {
+  if (!breakingBar || !breakingTextEl) return;
+
+  // نختار أحدث خبر عاجل
+  const breaking = all.find(n => n.isBreaking && (n.breakingText || n.title));
+
+  if (!breaking) {
+    // ✅ إذا تريدين الشريط يختفي تماماً إذا ماكو عاجل:
+    breakingBar.style.display = "none";
+    breakingTextEl.textContent = "";
+
+    // ✅ إذا تريدين شريط "ترحيبي" وقت التسليم (اختياري) بدّلي السطرين أعلاه بهذا:
+    // breakingBar.style.display = "flex";
+    // breakingTextEl.textContent = "مرحباً بكم في وكالة بغداد الإخبارية";
+
+    return;
+  }
+
+  breakingBar.style.display = "flex";
+  breakingTextEl.textContent = breaking.breakingText || breaking.title;
+}
+
+function renderHero(all) {
+  if (!heroMain || !heroSide) return;
+
+  const featured = all.find(n => n.placement === "featured") || all[0];
+
+  const side = all.filter(n => n.placement === "side").slice(0, 3);
+  const fallbackSide = all.filter(n => n.id !== featured?.id).slice(0, 3);
+  const sideToUse = side.length ? side : fallbackSide;
+
+  // Hero Main
+  heroMain.innerHTML = "";
+  if (featured) {
+    const media = featured.videoURL
+      ? `<video src="${featured.videoURL}" muted autoplay loop playsinline style="width:100%;height:500px;object-fit:cover;border-radius:5px;"></video>`
+      : `<img src="${featured.imageURL || "https://picsum.photos/900/500"}" alt="" style="width:100%;height:500px;object-fit:cover;border-radius:5px;">`;
+
+    heroMain.innerHTML = `
+      ${media}
+      <div class="overlay">
+        <a href="post.html?id=${encodeURIComponent(featured.id)}" style="color:#fff;text-decoration:none;">
+          ${featured.title}
+        </a>
+      </div>
+    `;
+  }
+
+  // Hero Side
+  heroSide.innerHTML = "";
+  sideToUse.forEach(n => {
+    const div = document.createElement("div");
+    div.className = "small-news";
+    div.innerHTML = `
+      <a href="post.html?id=${encodeURIComponent(n.id)}" style="color:#111;text-decoration:none;">
+        ${n.title}
+      </a>
+    `;
+    heroSide.appendChild(div);
+  });
+}
+
+function renderGrid(all) {
+  if (!newsGrid) return;
   newsGrid.innerHTML = "";
 
-  allNews.forEach(news => {
-    if (selectedCategory === "كل الأقسام" || news.category === selectedCategory) {
-      const card = document.createElement("div");
-      card.className = "card";
+  const normal = all.filter(n => n.placement !== "featured" && n.placement !== "side");
 
-      const mediaHTML = news.videoURL
-        ? `<video src="${news.videoURL}" controls style="width:100%;height:150px;object-fit:cover;"></video>`
-        : `<img src="${news.imageURL || 'https://picsum.photos/300/200'}" alt="" style="width:100%;height:150px;object-fit:cover;">`;
+  normal.forEach(n => {
+    const excerpt = n.content.length > 160 ? n.content.slice(0, 160) + "..." : n.content;
 
-      const excerpt =
-        news.content.length > 160 ? news.content.slice(0, 160) + "..." : news.content;
+    const card = document.createElement("div");
+    card.className = "card";
 
-      card.innerHTML = `
-        ${mediaHTML}
-        <h3>${news.title}</h3>
-        <p>${excerpt}</p>
-      `;
+    const media = n.videoURL
+      ? `<video src="${n.videoURL}" controls style="width:100%;height:150px;object-fit:cover;"></video>`
+      : `<img src="${n.imageURL || "https://picsum.photos/300/200"}" alt="" style="width:100%;height:150px;object-fit:cover;" />`;
 
-      newsGrid.appendChild(card);
-    }
+    card.innerHTML = `
+      ${media}
+      <h3>${n.title}</h3>
+      <p>${excerpt}</p>
+      <a href="post.html?id=${encodeURIComponent(n.id)}"
+         style="display:inline-block;padding:0 15px 15px;color:#741c7f;font-weight:700;text-decoration:none;">
+        اقرأ المزيد
+      </a>
+    `;
+
+    newsGrid.appendChild(card);
   });
+
+  if (!normal.length) {
+    newsGrid.innerHTML = `<p style="padding:20px;color:#666;">لا توجد أخبار حالياً.</p>`;
+  }
 }
 
 // Hamburger
 const hamburger = document.getElementById("hamburger");
 const navLinks = document.getElementById("navLinks");
+
 hamburger?.addEventListener("click", () => navLinks?.classList.toggle("show"));
+
+document.querySelectorAll("#navLinks a").forEach(a => {
+  a.addEventListener("click", () => navLinks?.classList.remove("show"));
+});
