@@ -1,160 +1,128 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Baghdad News Agency</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Baghdad News Agency</title>
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
 
-    <!-- شريط عاجل -->
-    <div class="breaking-news">
+  <!-- شريط عاجل -->
+  <div class="breaking-news" id="breakingBar" style="display:none;">
     <span>عاجل:</span>
-    <div class="breaking-text">
-        هذا مثال لأخبار عاجلة تظهر بشكل متحرك مثل CNN بالعربي • خبر إضافي 1 • خبر إضافي 2
-    </div>
-    </div>
-    <div class="social-icons">
-    <a href="https://facebook.com" target="_blank">
-        <i class="fab fa-facebook-f"></i> Facebook
+    <div class="breaking-text" id="breakingText"></div>
+  </div>
+
+  <!-- Social (إذا تريدينه فوق) -->
+  <div class="social-icons">
+    <a href="https://facebook.com" target="_blank" rel="noopener">
+      <i class="fab fa-facebook-f"></i> Facebook
     </a>
 
-    <a href="https://twitter.com" target="_blank">
-        <i class="fab fa-x-twitter"></i> Twitter
+    <a href="https://twitter.com" target="_blank" rel="noopener">
+      <i class="fab fa-x-twitter"></i> Twitter
     </a>
 
-    <a href="https://t.me/YourChannelName" target="_blank">
-        <i class="fab fa-telegram"></i> Telegram
+    <a href="https://t.me/YourChannelName" target="_blank" rel="noopener">
+      <i class="fab fa-telegram"></i> Telegram
     </a>
-</div>
+  </div>
 
-    <!-- Header / Navbar -->
-  <!-- Navbar / شريط الأقسام -->
-<header class="header">
-  <nav class="navbar">
-    <!-- زر الهامبرغر للموبايل -->
-    <button class="hamburger" id="hamburger">
-      <i class="fas fa-bars"></i>
-    </button>
+  <!-- Header / Navbar -->
+  <header class="header">
+    <nav class="navbar">
 
-    <!-- شعار -->
-    <a href="index.html" class="logo">
-      <img src="images/logo.png.png" alt="Baghdad News Agency Logo">
-    </a>
+      <!-- زر الهامبرغر للموبايل -->
+      <button class="hamburger" id="hamburger" aria-label="القائمة">
+        <i class="fas fa-bars"></i>
+      </button>
 
-    <!-- قائمة الأقسام -->
-    <ul class="nav-links" id="navLinks">
-      <li><a href="#" class="category-link" data-category="آخر الاخبار">آخر الاخبار</a></li>
-      <li><a href="#" class="category-link" data-category="المحلية">المحلية</a></li>
-      <li><a href="#" class="category-link" data-category="العربية">العربية</a></li>
-      <li><a href="#" class="category-link" data-category="الدولية">الدولية</a></li>
-      <li><a href="#" class="category-link" data-category="مال وأعمال">مال وأعمال</a></li>
-      <li><a href="#" class="category-link" data-category="آراء">آراء</a></li>
-      <li><a href="#" class="category-link" data-category="تقارير">تقارير</a></li>
-      <li><a href="#" class="category-link" data-category="ترفيه">ترفيه</a></li>
-      <li><a href="#" class="category-link" data-category="ثقافة">ثقافة</a></li>
-      <li><a href="#" class="category-link" data-category="رياضة">رياضة</a></li>
-      <li><a href="#" class="category-link" data-category="منوعة">منوعة</a></li>
-      <li><a href="https://wa.me/9647861851133" target="_blank">تواصل معنا</a>
-</li>
-    </ul>
-  </nav>
-</header>
+      <!-- شعار -->
+      <a href="index.html" class="logo">
+        <img src="images/logo.png.png" alt="Baghdad News Agency Logo">
+      </a>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-main">
-            <img src="https://picsum.photos/900/500" alt="">
-            <div class="overlay">
-                <h1>عنوان الخبر الرئيسي يظهر هنا بحجم كبير وواضح</h1>
-            </div>
-        </div>
+      <!-- قائمة الأقسام -->
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">آخر الأخبار</a></li>
 
-        <div class="hero-side">
-            <div class="small-news">
-                <h3>خبر جانبي مهم 1</h3>
-            </div>
-            <div class="small-news">
-                <h3>خبر جانبي مهم 2</h3>
-            </div>
-            <div class="small-news">
-                <h3>خبر جانبي مهم 3</h3>
-            </div>
-        </div>
-    </section>
+        <li><a href="category.html?cat=المحلية">المحلية</a></li>
+        <li><a href="category.html?cat=العربية">العربية</a></li>
+        <li><a href="category.html?cat=الدولية">الدولية</a></li>
+        <li><a href="category.html?cat=مال%20وأعمال">مال وأعمال</a></li>
+        <li><a href="category.html?cat=آراء">آراء</a></li>
+        <li><a href="category.html?cat=تقارير">تقارير</a></li>
+        <li><a href="category.html?cat=ترفيه">ترفيه</a></li>
+        <li><a href="category.html?cat=ثقافة">ثقافة</a></li>
+        <li><a href="category.html?cat=رياضة">رياضة</a></li>
+        <li><a href="category.html?cat=منوعة">منوعة</a></li>
 
-    <!-- Grid أخبار رئيسي -->
-    <section class="news-grid" id="newsGrid">
-    <div class="card" data-category="آخر الاخبار">
-        <img src="https://picsum.photos/300/200" alt="">
-        <h3>عنوان خبر 1</h3>
-        <p>وصف قصير للخبر 1 يوضح أهم التفاصيل.</p>
-    </div>
-    <div class="card" data-category="رياضة">
-        <img src="https://picsum.photos/300/200?2" alt="">
-        <h3>عنوان خبر 2</h3>
-        <p>وصف قصير للخبر 2 يوضح أهم التفاصيل.</p>
-    </div>
-    <div class="card" data-category="مال وأعمال">
-        <img src="https://picsum.photos/300/200?3" alt="">
-        <h3>عنوان خبر 3</h3>
-        <p>وصف قصير للخبر 3 يوضح أهم التفاصيل.</p>
-    </div>
-    <div class="card" data-category="ترفيه">
-        <img src="https://picsum.photos/300/200?4" alt="">
-        <h3>عنوان خبر 4</h3>
-        <p>وصف قصير للخبر 4 يوضح أهم التفاصيل.</p>
-    </div>
-</section>
-        <script type="module" src="main.js"></script>
-        
-</body>
-<footer class="footer">
-  <div class="footer-container">
-
-    <!-- Right: Categories -->
-    <div class="footer-section footer-cats">
-      <h4>الأقسام</h4>
-      <ul class="footer-links-horizontal">
-        <li><a href="#" class="category-link" data-category="كل الأقسام">آخر الأخبار</a></li>
-        <li><a href="#" class="category-link" data-category="المحلية">المحلية</a></li>
-        <li><a href="#" class="category-link" data-category="العربية">العربية</a></li>
-        <li><a href="#" class="category-link" data-category="الدولية">الدولية</a></li>
-        <li><a href="#" class="category-link" data-category="مال وأعمال">مال وأعمال</a></li>
-        <li><a href="#" class="category-link" data-category="آراء">آراء</a></li>
-        <li><a href="#" class="category-link" data-category="تقارير">تقارير</a></li>
-        <li><a href="#" class="category-link" data-category="ترفيه">ترفيه</a></li>
-        <li><a href="#" class="category-link" data-category="ثقافة">ثقافة</a></li>
-        <li><a href="#" class="category-link" data-category="رياضة">رياضة</a></li>
-        <li><a href="#" class="category-link" data-category="منوعة">منوعة</a></li>
+        <li><a href="https://wa.me/9647861851133" target="_blank" rel="noopener">تواصل معنا</a></li>
       </ul>
-    </div>
 
-    <!-- Center: App -->
-    <div class="footer-section footer-app">
-      <h4>تحميل التطبيق</h4>
-      <div class="app-buttons">
-        <a href="#">Google Play</a>
-        <a href="#">App Store</a>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-main" id="heroMain"></div>
+    <div class="hero-side" id="heroSide"></div>
+  </section>
+
+  <!-- Grid أخبار -->
+  <section class="news-grid" id="newsGrid"></section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+
+      <!-- Right: Categories -->
+      <div class="footer-section footer-cats">
+        <h4>الأقسام</h4>
+        <ul class="footer-links-horizontal">
+          <li><a href="index.html">آخر الأخبار</a></li>
+          <li><a href="category.html?cat=المحلية">المحلية</a></li>
+          <li><a href="category.html?cat=العربية">العربية</a></li>
+          <li><a href="category.html?cat=الدولية">الدولية</a></li>
+          <li><a href="category.html?cat=مال%20وأعمال">مال وأعمال</a></li>
+          <li><a href="category.html?cat=آراء">آراء</a></li>
+          <li><a href="category.html?cat=تقارير">تقارير</a></li>
+          <li><a href="category.html?cat=ترفيه">ترفيه</a></li>
+          <li><a href="category.html?cat=ثقافة">ثقافة</a></li>
+          <li><a href="category.html?cat=رياضة">رياضة</a></li>
+          <li><a href="category.html?cat=منوعة">منوعة</a></li>
+        </ul>
       </div>
-    </div>
 
-    <!-- Left: Social -->
-    <div class="footer-section footer-social">
-      <h4>تابعنا</h4>
-      <div class="social-icons">
-        <a href="#">Facebook</a>
-        <a href="#">Instagram</a>
-        <a href="#">Telegram</a>
+      <!-- Center: App -->
+      <div class="footer-section footer-app">
+        <h4>تحميل التطبيق</h4>
+        <div class="app-buttons">
+          <a href="#">Google Play</a>
+          <a href="#">App Store</a>
+        </div>
       </div>
+
+      <!-- Left: Social -->
+      <div class="footer-section footer-social">
+        <h4>تابعنا</h4>
+        <div class="social-icons">
+          <a href="#" target="_blank" rel="noopener">Facebook</a>
+          <a href="#" target="_blank" rel="noopener">Instagram</a>
+          <a href="#" target="_blank" rel="noopener">Telegram</a>
+        </div>
+      </div>
+
     </div>
 
-  </div>
+    <div class="copyright">
+      © 2026 Baghdad News Agency - جميع الحقوق محفوظة
+    </div>
+  </footer>
 
-  <div class="copyright">
-    © 2026 Baghdad News Agency - جميع الحقوق محفوظة
-  </div>
-</footer>
+  <script type="module" src="main.js"></script>
+</body>
 </html>
